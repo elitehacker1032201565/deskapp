@@ -110,7 +110,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser, PermissionsMixin):
     username = models.CharField(max_length=100)
-    
+    email_token = models.CharField(max_length=100,null=True)
     is_verified = models.BooleanField(default=False)
     otp = models.CharField(max_length=6, null=True, blank=True)
     email = models.EmailField(_("email address"), unique=True)
@@ -138,3 +138,4 @@ class UploadedFile(models.Model):
 
     def __str__(self):
         return self.title
+

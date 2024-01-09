@@ -100,6 +100,8 @@
 
 from base64 import urlsafe_b64encode
 import json
+import token
+import uuid
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.shortcuts import HttpResponse
@@ -109,6 +111,8 @@ from django.contrib.auth import authenticate,login,logout,get_user_model
 from django.contrib.auth.decorators import login_required
 from django_filters.views import FilterView
 import requests
+
+from accounts.utils import send_email_token
 
 from .models import CustomUser,UploadedFile
 from .filters import CustomUserFilter
@@ -127,11 +131,12 @@ from .serializers import CustomTokenCreateSerializer
 
 from rest_framework.decorators import api_view
 from django.utils.encoding import force_bytes
+
 # from . import UserFile
 # from .serializers import UserFileSerializer
 
 User = get_user_model()
- 
+
 def home(request):
     return render(request,"accounts/home.html")
 
@@ -189,12 +194,16 @@ def signup(request):
             
             CustomUser = get_user_model()
 
-            myuser = CustomUser.objects.create_user(username,email,password)
+            myuser = CustomUser.objects.create_user(username,email,password,email_token=str(uuid.uuid4()))
+            
             myuser.first_name = firstname
             myuser.last_name = lastname
             myuser.public_visibility = public_visibility
 
             myuser.save()
+            print(myuser.email_token)
+            send_email_token(email,myuser.email_token)
+            
             
             send_otp_mail(email)
             return redirect('otp')
@@ -210,6 +219,16 @@ def signup(request):
 
     
     return render(request,"accounts/signup.html")
+
+def verify(request,token):
+    try:
+        obj=CustomUser.objects.get(email_token=token)
+        obj.is_verified=True
+        obj.save()
+        return redirect('signin')
+    except Exception as e:
+        return HttpResponse('invalid token')
+
 
 def signin(request):
 

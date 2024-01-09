@@ -17,7 +17,7 @@
 from django.db import router
 from django.urls import path,include
 from .import views
-from .views import AuthorsAndSellersView, token_send
+from .views import AuthorsAndSellersView, token_send, verify
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
@@ -32,7 +32,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     # path("register", views.register_user, name="register"),
     # path("verify", views.verify_otp, name="verify"),
-
+    path('verify/<token>', views.verify, name="verify"),
     path("otp", views.otp, name="otp"),
     path('signup',views.signup, name='signup'),
     path('signin',views.signin, name='signin'),
