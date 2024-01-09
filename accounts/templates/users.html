@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8">
+    <title>Register Page</title>
+
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images\apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images\favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images\favicon-32x32.png' %}">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css\core.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\jquery.steps.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\table.css' %}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-119386393-1');
+    </script>
+</head>
+<body class="login-page">
+    <div class="login-header box-shadow">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="brand-logo">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'images/deskapp-logo.svg' %}" alt="">
+                </a>
+            </div>
+            <div class="logout-button">
+                <button class="btn btn-light border border-primary" style="color: white;" type="submit"><a href="/logout">Log Out</a></button>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 20px;"> <!-- Added padding here -->
+        <h3>List of all users</h3>
+        <br>
+        <table class="animated-table" style="border-collapse: collapse; width: 100%; margin-top: 10px; border: 1px solid #ddd;">
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Username</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">First Name</th>
+                <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Last Name</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ user.username }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ user.email }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ user.first_name }}</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ user.last_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script src="{% static 'js\core.js' %}"></script>
+    <script src="{% static 'js\script.min.js' %}"></script>
+    <script src="{% static 'js\process.js' %}"></script>
+    <script src="{% static 'js\layout-settings.js' %}"></script>
+    <script src="{% static 'js\jquery.steps.js' %}"></script>
+    <script src="{% static 'js\steps-setting.js' %}"></script>
+</body>
+</html>

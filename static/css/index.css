@@ -1,0 +1,69 @@
+/* Add your CSS styles here */
+.content-wrapper {
+    padding: 20px;
+}
+
+.intro-text {
+    padding: 10px 20px;
+    text-align: center;
+    color: black;
+}
+
+.button-group {
+    margin-top: 10px;
+}
+
+.button-group button {
+    margin-top: 10px;
+    color: white;
+}
+
+/* Add more CSS as needed */
+
+/* Add custom CSS styles for the buttons */
+.button-group {
+    margin-top: 20px;
+}
+
+.button-group button {
+    background-color: #3498db;
+    border: 2px solid #3498db;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-group button:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+.button-group button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.6s ease;
+    border-radius: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.button-group button:hover::before {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+.button-group button a {
+    color: white;
+    text-decoration: none;
+    z-index: 1;
+    position: relative;
+}

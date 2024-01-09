@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+{% load django_bootstrap5 %}
+<html lang="en">
+<head>
+    <!-- Basic Page Info -->
+    <meta charset="utf-8">
+    <title>Landing Page</title>
+
+    <!-- Site favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images\apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images\favicon-16x16.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images\favicon-32x32.png' %}">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css\core.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\icon-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\jquery.steps.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css\home.css' %}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-119386393-1');
+    </script>
+</head>
+<body class="login-page">
+    <nav class="login-header box-shadow  navbar navbar-light">
+        <div class="container-fluid d-flex justify-content-between align-items-center ">
+            <div class="brand-logo">
+                <a href="{% url 'index'%}">
+                    <img src="{% static 'images/deskapp-logo.svg' %}" alt="">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ messages.tags }} alert-dismissable fade show" roles="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+    <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-lg-7">
+                    <img src="{% static 'images/banner-img.png' %}" alt="">
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-box bg-white box-shadow border-radius-10">
+                        <span class="text-center"><h3>Welcome to the social website</h3></span>
+
+                        <br>
+
+                        {% if user.is_authenticated %}
+                        <div class="text-center">Hello !! {{ firstname }}</div>
+                        <div class="text-center">You have successfully logged in</div>
+                        {% comment %} <button class="btn btn-primary btn-lg btn-block" type="submit"><a href="/logout">Log Out</a></button> {% endcomment %}
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-light border border-primary"><a href="/logout">Log Out</a></button>
+                        </div>
+                        {% else %}
+                        {% comment %} <button class="btn btn-primary btn-lg btn-block" type="submit"><a href="/signup">Sign Up</a></button> {% endcomment %}
+                        <button type="submit" class="btn btn-light border border-primary"><a href="/signup">Sign Up</a></button>
+                        {% comment %} <button class="btn btn-primary btn-lg btn-block" type="submit"><a href="/signin">Log in</a></button> {% endcomment %}
+                        <button type="submit" class="btn btn-light border border-primary"><a href="{% url 'signin'%}">Log in</a></button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js\core.js' %}"></script>
+    <script src="{% static 'js\script.min.js' %}"></script>
+    <script src="{% static 'js\process.js' %}"></script>
+    <script src="{% static 'js\layout-settings.js' %}"></script>
+    <script src="{% static 'js\jquery.steps.js' %}"></script>
+    <script src="{% static 'js\steps-setting.js' %}"></script>
+</body>
+</html>

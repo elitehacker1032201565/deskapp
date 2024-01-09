@@ -1,0 +1,41 @@
+/* Table Styling */
+.animated-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.animated-table th,
+.animated-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.animated-table th {
+    background-color: #f2f2f2;
+}
+
+/* Table Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animated-table tbody tr {
+    animation: fadeIn 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.animated-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

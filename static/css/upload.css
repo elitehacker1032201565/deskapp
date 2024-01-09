@@ -1,0 +1,52 @@
+/* Your CSS file or <style> section in HTML */
+
+.content-wrapper {
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.animated-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.animated-table th,
+.animated-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.animated-table th {
+    background-color: #f2f2f2;
+}
+
+.animated-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.animated-table tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s;
+}
+
+.logout-btn {
+    display: inline-block;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background-color: #007bff;
+    transition: background-color 0.3s;
+}
